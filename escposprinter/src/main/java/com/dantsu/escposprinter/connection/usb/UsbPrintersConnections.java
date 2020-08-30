@@ -25,15 +25,52 @@ public class UsbPrintersConnections extends UsbConnections {
     public static UsbConnection selectFirstConnected(Context context) {
         UsbPrintersConnections printers = new UsbPrintersConnections(context);
         UsbConnection[] bluetoothPrinters = printers.getList();
-        
+
         if (bluetoothPrinters == null || bluetoothPrinters.length == 0) {
             return null;
         }
 
         return bluetoothPrinters[0];
     }
-    
-    
+
+    /**
+     * Easy way to get the first USB printer paired / connected.
+     *
+     * @return a UsbConnection instance
+     */
+    public static UsbConnection selectConnected(Context context, int index) {
+        UsbPrintersConnections printers = new UsbPrintersConnections(context);
+        UsbConnection[] bluetoothPrinters = printers.getList();
+
+        if (bluetoothPrinters == null || bluetoothPrinters.length == 0) {
+            return null;
+        }
+
+        if(index>=0 && index<bluetoothPrinters.length) {
+            return bluetoothPrinters[index];
+        }else{
+            return null;
+        }
+    }
+
+    public static UsbConnection selectVendorConnected(Context context, int vendorId) {
+        UsbPrintersConnections printers = new UsbPrintersConnections(context);
+        UsbConnection[] bluetoothPrinters = printers.getList();
+
+        if (bluetoothPrinters == null || bluetoothPrinters.length == 0) {
+            return null;
+        }
+
+        for(UsbConnection connection : bluetoothPrinters){
+            if(connection.getDevice().getVendorId() == vendorId){
+                return connection;
+            }
+        }
+        return null;
+    }
+
+
+
     /**
      * Get a list of USB printers.
      *

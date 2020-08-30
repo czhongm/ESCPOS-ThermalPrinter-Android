@@ -190,7 +190,7 @@ public class EscPosPrinterCommands {
      * @param printerConnection an instance of a class which implement DeviceConnection
      */
     public EscPosPrinterCommands(DeviceConnection printerConnection) {
-        this(printerConnection, new EscPosCharsetEncoding("ISO-8859-1", 6));
+        this(printerConnection, new EscPosCharsetEncoding("GBK", 255));
     }
 
     /**

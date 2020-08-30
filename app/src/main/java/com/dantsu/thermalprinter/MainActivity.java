@@ -123,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void printUsb() {
-        UsbConnection usbConnection = UsbPrintersConnections.selectFirstConnected(this);
+//        UsbConnection usbConnection = UsbPrintersConnections.selectFirstConnected(this);
+        UsbConnection usbConnection = UsbPrintersConnections.selectVendorConnected(this,4070);
         UsbManager usbManager = (UsbManager) this.getSystemService(Context.USB_SERVICE);
 
         if (usbConnection == null || usbManager == null) {
@@ -240,9 +241,9 @@ public class MainActivity extends AppCompatActivity {
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
 
         return printer.setTextToPrint(
-                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+//                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                         "[L]\n" +
-                        "[C]<u><font size='big'>ORDER N°045</font></u>\n" +
+                        "[C]<u><font size='big'>中文测试</font></u>\n" +
                         "[C]<font size='small'>" + format.format(new Date()) + "</font>\n" +
                         "[L]\n" +
                         "[C]================================\n" +
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                         "[L]<b>BEAUTIFUL SHIRT</b>[R]9.99e\n" +
                         "[L]  + Size : S\n" +
                         "[L]\n" +
-                        "[L]<b>AWESOME HAT</b>[R]24.99e\n" +
+                        "[L]<b>中文 HAT</b>[R]24.99e\n" +
                         "[L]  + Size : 57/58\n" +
                         "[L]\n" +
                         "[C]--------------------------------\n" +
